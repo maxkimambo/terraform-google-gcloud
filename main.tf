@@ -47,7 +47,7 @@ locals {
   additional_components_command                = "${path.module}/scripts/check_components.sh ${local.gcloud} ${local.components}"
   gcloud_auth_service_account_key_file_command = "${local.gcloud} auth activate-service-account --key-file ${var.service_account_key_file}"
   gcloud_auth_google_credentials_command       = <<-EOT
-    printf "%s" "$GOOGLE_CREDENTIALS" > ${local.tmp_credentials_path} &&
+    cat "$GOOGLE_CREDENTIALS" > ${local.tmp_credentials_path} &&
     ${local.gcloud} auth activate-service-account --key-file ${local.tmp_credentials_path}
   EOT
 
